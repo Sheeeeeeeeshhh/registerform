@@ -19,13 +19,20 @@ const Form = () => {
     textArea: data.textArea
 
     
+
+    
     })
     .then(function (response) {
       console.log(response);
+      
     })
     .catch(function (error) {
       console.log(error);
+
+   
     });
+    event.target.reset();
+    alert("Form Submitted Successfully");
    }
  
    return (
