@@ -1,13 +1,13 @@
 import styles from "./Form.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import Anime from "components/AnimatedBG";
+import { registerSchema } from "schema/formSchema";
 
 const Form = () => {
-   const {register, handleSubmit ,formState: { errors }} = useForm();
+   const {register, handleSubmit, reset ,formState: { errors }} = useForm({ resolver: yupResolver(registerSchema) });
 
-  //yung data dito is yung kung anong nakalaggay sa  {..register("firstName")}
-  //bali irretrived nya lahat ng pinasang data sa form
    const submitForm = (data) => {
     axios.post('http://localhost:8000/register', {
     firstName: data.firstName,
@@ -31,7 +31,7 @@ const Form = () => {
 
    
     });
-    event.target.reset();
+      reset();
     alert("Form Submitted Successfully");
    }
  
@@ -129,7 +129,7 @@ const Form = () => {
           </form>
         </div>
       </div>
-    
+      <Anime />
     </div>
   );
 }
